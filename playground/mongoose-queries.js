@@ -11,9 +11,9 @@ if (!ObjectID.isValid(todoId)) {
   console.log('Id not valid');
 }
 
-// if (!ObjectID.isValid(userId)) {
-//   console.log('Id not valid');
-// }
+if (!ObjectID.isValid(userId)) {
+  console.log('Id not valid');
+}
 
 // Todo.find({
 //   _id: todoId
@@ -34,12 +34,12 @@ Todo.findById(todoId).then((todo) => {
   console.log('Todo by id', todo);
 }).catch((e) => console.log(e));
 
-// User.findById(userId).then((user) => {
-//   if (!user) {
-//     return console.log('Unable to find user');
-//   }
-//
-//   console.log(JSON.stringify(user, undefined, 2));
-// }, (e) => {
-//   console.log(e);
-// });
+User.findById(userId).then((user) => {
+  if (!user) {
+    return console.log('Unable to find user');
+  }
+
+  console.log(JSON.stringify(user, undefined, 2));
+}, (e) => {
+  console.log(e);
+});
