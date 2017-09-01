@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+// <--- TODOS ROUTE STARTS ----------------------------------------------->
 app.post('/todos', (req, res) => {
   var todo = new Todo({
     text: req.body.text
@@ -40,7 +41,7 @@ app.get('/todos/:id', (req, res) => {
 
   Todo.findById(id).then((todo) => {
     if (!todo) {
-      return res.status(404).send('ID NOT FOUND');
+      return res.status(404).send('TODOS ID NOT FOUND');
     } else {
       res.send({todo});
     }
@@ -49,6 +50,26 @@ app.get('/todos/:id', (req, res) => {
   });
 });
 
+app.delete('/todos/:id', (req, res) => {
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)){
+    return res.status(404).send('ID IS NOT VALID');
+  }
+
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if (!todo) {
+      return res.status(404).send('TODOS ID NOT FOUND');
+    } else {
+      res.send({todo});
+    }
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
+// <--- TODOS ROUTE ENDS ------------------------------------------------->
+
+// <--- USERS ROUTE STARTS ----------------------------------------------->
 app.post('/users', (req, res) => {
   var user = new User({
     firstName: req.body.firstName,
@@ -76,5 +97,6 @@ app.get('/users', (req, res) =>  {
 app.listen(port, () => {
   console.log(`Started up at port ${port}`);
 });
+// <--- USERS ROUTE ENDS ------------------------------------------------->
 
 module.exports = {app};

@@ -8,10 +8,10 @@ var User = mongoose.model('User', {
     type: String, required: true, trim: true, minlength: 1
   },
   userName: {
-    type: String, trim: true, minlength: 1, unique: true
+    type: String, trim: true, minlength: 1
   },
   email: {
-    type: String, required: true, trim: true, minlength: 1, unique: true
+    type: String, required: true, trim: true, minlength: 1
   },
   date: {
     type: Date, default: Date.now
