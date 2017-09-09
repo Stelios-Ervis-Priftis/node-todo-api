@@ -1,3 +1,5 @@
+require('./config/config');
+
 const _ = require('lodash')
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -101,7 +103,6 @@ app.patch('/todos/:id', (req, res) => {
     res.status(400).send();
   });
 });
-
 // <--- TODOS ROUTE ENDS ------------------------------------------------->
 
 // <--- USERS ROUTE STARTS ----------------------------------------------->
